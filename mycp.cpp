@@ -1,39 +1,53 @@
-int main(int argc, char const *argv[])
-{
+/*
+Author: Brandon Hemminghaus
+*/
+
+#include <iostream>
+#include <fstream>
+
+using namespace std;
+
+int main(int argc, char const *argv[]){
  	ifstream fin;
  	ofstream fout;
 	
 	// check if there are enough arguments
-	
-	
-	// open the first file
- 	
-	char c;
-
- 	if (fin.fail()) // check if it is successful 
- 	{
- 		cerr << " Cannot open the input file!" << endl;
- 		return 1;
- 	}
- 	
-
-	// open the second file
-	
- 	if (fout.fail())
- 	{
- 		cerr << " Cannot open the output file!" << endl;
- 		return 1;
- 	}
- 	
- 	while(fin.get(c)) 
-	{
-		fout << c;
+	if(argc < 2){
+		cout << "Not enough arguments" << endl;
 	}
- 	
- 	fin.close(); 
+	else if(argc > 3){
+		cout << "Too many arguments" << endl;
+	}
+	else{
+		char c;
+		
+		// open the first file
+		fin.open(argv[1]);
+		if (fin.fail()) // check if it is successful 
+		{
+			cerr << " Cannot open the input file!" << endl;
+			return 1;
+		}
+		
 
- 	fout.close();
+		// open the second file
+		fout.open(argv[2]);
+		if (fout.fail())
+		{
+			cerr << " Cannot open the output file!" << endl;
+			return 1;
+		}
+		
+		while(fin.get(c)) 
+		{
+			fout << c;
+		}
+		
+		fin.close(); 
 
- 	 return 0;
+		fout.close();
+	}
+
+ 	return 0;
 
  } 
